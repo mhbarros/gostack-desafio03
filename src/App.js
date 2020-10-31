@@ -18,10 +18,10 @@ function App() {
   }, [])
 
   async function handleAddRepository() {
-    if(!repositoryName){
+    /*if(!repositoryName){
       alert('Digite um nome para o repositório');
       return;
-    }
+    }*/
 
 
     const response = await Api.post('/repositories', {
@@ -69,7 +69,7 @@ function App() {
         </ul>
         <div className={'new-repository'}>
           <input type={'text'} placeholder={'Nome do repositório'} value={repositoryName} onChange={e => {setRepositoryName(e.target.value)}}/>
-          <button onClick={handleAddRepository}><FaPlus size={14} color={'white'} />Adicionar repositório</button>
+          <button onClick={handleAddRepository}><FaPlus size={14} color={'white'} />Adicionar</button>
         </div>
 
       </div>
