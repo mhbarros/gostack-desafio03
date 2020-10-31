@@ -16,6 +16,7 @@ div {
 div li {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
 div li + li {
@@ -33,7 +34,31 @@ button {
   font-size: 14px;
 }
 
+button > svg {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
 div li button {
   margin: 0 15px;
   background: #ca4949;
+}
+
+input {
+  border: 1px solid black;
+  border-radius: 8px;
+  height: 42px;
+  padding: 0 10px;
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.new-repository {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 20px 0 0 0;
 }

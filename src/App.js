@@ -1,30 +1,78 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import {FaPlus} from "react-icons/fa";
+
+import Api from './services/api';
 
 import "./styles.css";
 
 function App() {
+
+  const [repositories, setRepositories] = useState([]);
+  const [repositoryName, setRepositoryName] = useState('');
+
+  useEffect(() => {
+    Api.get('/repositories').then(response => {
+      console.log(response.data);
+      setRepositories(response.data)
+    })
+  }, [])
+
   async function handleAddRepository() {
-    // TODO
+    if(!repositoryName){
+      alert('Digite um nome para o repositório');
+      return;
+    }
+
+
+    const response = await Api.post('/repositories', {
+      title: repositoryName,
+      url: 'https://www.github.com/mhbarros',
+      owner: 'Marcelo Barros'
+    });
+
+    setRepositoryName('');
+
+    setRepositories([...repositories, response.data])
   }
 
   async function handleRemoveRepository(id) {
-    // TODO
+    const response = await Api.delete(`/repositories/${id}`);
+    if (response.status === 204) {
+      const repIndex = repositories.findIndex(rep => rep.id === id);
+
+      if (repIndex >= 0) {
+        let newRep = repositories;
+        newRep.splice(repIndex, 1);
+
+        setRepositories([...newRep]);
+      }
+    }
   }
 
   return (
-    <div>
-      <ul data-testid="repository-list">
-        <li>
-          Repositório 1
+      <div>
+        <h1>Listagem de repositórios</h1>
+        <ul data-testid="repository-list">
+          {
 
-          <button onClick={() => handleRemoveRepository(1)}>
-            Remover
-          </button>
-        </li>
-      </ul>
+            repositories.map(rep => (
+                <li key={rep.id}>
+                  {rep.title}
+                  <button onClick={() => {
+                    handleRemoveRepository(rep.id)
+                  }}>
+                    Remover
+                  </button>
+                </li>
+            ))
+          }
+        </ul>
+        <div className={'new-repository'}>
+          <input type={'text'} placeholder={'Nome do repositório'} value={repositoryName} onChange={e => {setRepositoryName(e.target.value)}}/>
+          <button onClick={handleAddRepository}><FaPlus size={14} color={'white'} />Adicionar repositório</button>
+        </div>
 
-      <button onClick={handleAddRepository}>Adicionar</button>
-    </div>
+      </div>
   );
 }
 
