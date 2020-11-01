@@ -7,3 +7,5 @@ Este é o repositório do desafio nº3 do bootcamp GoStack, da **Rocketseat**. <
 # Incrementos ao desafio
 - Interface remodelada
 - Possibilidade de customizar o nome do repositório adicionado
+
+<img src="https://i.imgur.com/IzmgK5J.png" />
