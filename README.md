@@ -4,6 +4,8 @@
 Este é o repositório do desafio nº3 do bootcamp GoStack, da **Rocketseat**. <br/>
 <a href="https://github.com/rocketseat-education/bootcamp-gostack-desafios/tree/master/desafio-conceitos-reactjs">Clique aqui</a> para acessar o link do desafio.
 
+Desafio de conceitos básicos em ReactJS
+
 # Incrementos ao desafio
 - Interface remodelada
 - Possibilidade de customizar o nome do repositório adicionado
